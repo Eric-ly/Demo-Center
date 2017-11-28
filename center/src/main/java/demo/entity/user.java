@@ -1,0 +1,58 @@
+package demo.entity;
+
+public class user
+{
+
+
+	@Override
+	public String toString()
+	{
+		return "user [Address=" + Address + ", telNumber=" + telNumber + ", id=" + id + ", name=" + name + ", age=" + age + "]";
+	}
+	public String getAddress()
+	{
+		return Address;
+	}
+	public void setAddress(String address)
+	{
+		Address = address;
+	}
+	public Integer getTelNumber()
+	{
+		return telNumber;
+	}
+	public void setTelNumber(Integer telNumber)
+	{
+		this.telNumber = telNumber;
+	}
+	public int getId()
+	{
+		return id;
+	}
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public int getAge()
+	{
+		return age;
+	}
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+	private String Address;
+	private Integer telNumber;
+	private int id;
+	private String name;
+	private int age;
+	
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.mybatis.userMapper">
+	<!-- 
+		根据id查询得到一个user对象
+	 -->
+	 <select id="getUser" parameterType="int" resultType="demo.entity.user">
+	 	select * from users where id=#{id}
+	 </select>
+	 
+	 <select id="getAllUsers" resultType="user">
+	 	select * from users
+	 </select>
+	 <!-- 根据id 查询orders 表 返回一个order -->
+	 <!-- 数据库字段和 实体类属性不一致
+	 	*#{id} 是对应 实体类 order的属性
+	 	*对应不上 需要 在sql 中 对数据库字段加别名
+	 	order_id id
+	  -->
+	 <select id="getOrder" parameterType="int" resultType="Order">
+	 	select order_id id, order_no orderNo,order_price price from orders where order_id=#{id}
+	 </select>
+	 <!-- mybatis 提供是映射关系对，参数变为 resultmap，并且定义map，type 为对应对实体类order -->
+		 <select id="getOrder2" parameterType="int" resultMap="orderResultMap">
+			select * from orders where order_id=#{id}
+		</select>
+		<!-- resultmap 是封装一些映射关系 -->
+		<resultMap type="Order" id="orderResultMap">
+			<id property="id" column="order_id"/><!-- 主键 -->
+			<result property="orderNo" column="order_no"/><!-- 一般属性 -->
+			<result property="price" column="order_price"/>
+		</resultMap>
+</mapper>

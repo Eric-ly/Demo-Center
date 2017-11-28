@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<select id="getStudentList_whereIf" resultMap="resultMap_studentEntity" parameterType="liming.student.manager.data.model.StudentEntity">  
+    SELECT ST.STUDENT_ID,  
+           ST.STUDENT_NAME,  
+           ST.STUDENT_SEX,  
+           ST.STUDENT_BIRTHDAY,  
+           ST.STUDENT_PHOTO,  
+           ST.CLASS_ID,  
+           ST.PLACE_ID  
+      FROM STUDENT_TBL ST   
+    <where>  
+        <if test="studentName !=null ">  
+            ST.STUDENT_NAME LIKE CONCAT(CONCAT('%', #{studentName, jdbcType=VARCHAR}),'%')  
+        </if>  
+        <if test="studentSex != null and studentSex != '' ">  
+            AND ST.STUDENT_SEX = #{studentSex, jdbcType=INTEGER}  
+        </if>  
+    </where>    
+</select>  
